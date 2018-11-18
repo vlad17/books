@@ -9,6 +9,14 @@
 
 % fonts, math, and layout commands
 \usepackage{fullpage}
+
+
+\usepackage{setspace} % for \onehalfspacing and \singlespacing macros
+\onehalfspacing 
+
+\usepackage{etoolbox}
+\AtBeginEnvironment{quote}{\singlespacing\small}
+
 \usepackage{bbm}
 \usepackage{enumerate}
 \usepackage{amsmath}
@@ -184,6 +192,7 @@
 % conditional expectation is analogous
 \newcommand{\set}[2]{ \left\{ #1 \,\middle|\, #2 \right\} }
 \newcommand{\CE}[2]{ \mathExp\left[ #1 \,\middle|\, #2 \right] }
+\newcommand{\CP}[2]{ \mathProb\left\{ #1 \,\middle|\, #2 \right\} }
 
 % linear-algebra related
 \newcommand{\rip}{\operatorname{RIP}}
