@@ -20,16 +20,16 @@ Primary source authors: BOOK AUTHOR 1, BOOK AUTHOR 2.
 
 Links to notes
 
-#. [Chapter 1](chapter1.pdf)
-#. [Chapter 2](chapter2.pdf)
+1. [Chapter 1](chapter1.pdf)
+1. [Chapter 2](chapter2.pdf)
 ```
 
 Put *your* name directly in the linked notes document (to see who contributed the notes).
 
 **Notes on notes**. Distill, distill, distill! These notes are maximally useful when they find an optimum between two conflicting goals.
 
-#. They can be revisited to quickly summarize or identify a key point (which can then be manually back-referenced with the original source). _Essential_ for this is to use terse language, 
-#. They unravel difficult-to-understand topics that are obscure in the reference.
+1. They can be revisited to quickly summarize or identify a key point (which can then be manually back-referenced with the original source). _Essential_ for this is to use terse language, 
+1. They unravel difficult-to-understand topics that are obscure in the reference.
 
 More concretely:
 
