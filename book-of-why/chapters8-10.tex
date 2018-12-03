@@ -70,7 +70,7 @@ $$
 \textrm{PS}=\CP{Y_{X=1}=1}{X=0,Y=0}\,.
 $$
 
-What does $\P\ca{Y_{X=a}=b|E}$ mean? Why is it not $\CP{Y=b}{\mathrm{do}(X=a), E}$? $Y_{X=a}$ is the variable $Y$ after we update our belief about the nature of $Y$ and its relationship to $X$ given that we observe $E$ had occured (Pearl calls this ``hindsight''). The \nurl{http://ftp.cs.ucla.edu/pub/stat_ser/r260-reprint.pdf}{original paper} gives a full elaboration: in particular, the $\mathrm{do}$ version calculates the probability that $Y=b$ removing all arrows into $X$ in the original causal model. $Y_{X=a}=b$ considers the causal \textit{submodel} (literally the subgraph of the original causal model with $a$ fixed to $X$), and uses the induced conditional probability tables from the subgraph to compute the behavior of $Y$, but with respect to the missing nodes taking on values from the original causal model (letting us ask questions that seemingly contradict themselves like $\P\ca{Y_{X=1}=1, X=0}$).
+What does $\P\ca{Y_{X=a}=b|E}$ mean? Why is it not $\CP{Y=b}{\mathrm{do}(X=a), E}$? $Y_{X=a}$ is the variable $Y$ after we update our belief about the nature of $Y$ and its relationship to $X$ given that we observe $E$ had occured (Pearl calls this ``hindsight''). The \nurl{http://ftp.cs.ucla.edu/pub/stat_ser/r260-reprint.pdf}{original paper} gives a full elaboration: in particular, the $\mathrm{do}$ version calculates the probability that $Y=b$ removing all arrows into $X$ in the original causal model. $Y_{X=a}=b$ considers the causal \textit{submodel} (literally the subgraph of the original causal model with $a$ fixed to $X$), and uses the induced conditional probability tables from the subgraph to compute the behavior of $Y$, but with respect to the missing nodes taking on values from the original causal model (letting us ask questions that seemingly contradict themselves like $\P\ca{Y_{X=1}=1, X=0}$). \cite{pearl1999probabilities}.
 
 TODO(vlad17): expand/distill above paragraph, add a diagram constructed base on the above paper.
 
@@ -141,5 +141,9 @@ TODO(vlad17): flesh out high-level points based on interpretability
 Note this section is dedicated to my general afterthoughts, not the original work.
 
 TODO(vlad17): true automation through proposition of causal structure.
+
+
+\bibliography{biblio}{}
+\bibliographystyle{plain}
 
 \end{document}

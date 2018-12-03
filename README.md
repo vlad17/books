@@ -37,6 +37,8 @@ More concretely:
 * Formulas over paragraphs
 * Avoid straying too far from the material, or do so in a separate section.
 
+**To add a citation**. Find the BibTeX entry for your citation (Google scholar has auto-generated ones). Put it in your directory's `bib` file and make sure the compilation process in `build.sh` correctly generates your bibliography.
+
 ### Contributors
 
 * [Vlad Feinberg](https://github.com/vlad17)
