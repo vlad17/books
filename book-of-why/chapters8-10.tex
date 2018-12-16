@@ -72,48 +72,56 @@ $$
 \textrm{PS}=\CP{Y_{X=1}=1}{X=0,Y=0}\,.
 $$
 
-What does $\P\ca{Y_{X=a}=b|E}$ mean? Why is it not $\CP{Y=b}{\mathrm{do}(X=a), E}$? $Y_{X=a}$ is the variable $Y$ after we update our belief about the nature of $Y$ and its relationship to $X$ given that we observe $E$ had occured (Pearl calls this ``hindsight''). The \nurl{http://ftp.cs.ucla.edu/pub/stat_ser/r260-reprint.pdf}{original paper} gives a full elaboration: in particular, the $\mathrm{do}$ version calculates the probability that $Y=b$ removing all arrows into $X$ in the original causal model. $Y_{X=a}=b$ considers the causal \textit{submodel} (literally the subgraph of the original causal model with $a$ fixed to $X$), and uses the induced conditional probability tables from the subgraph to compute the behavior of $Y$, but with respect to the missing nodes taking on values from the original causal model (letting us ask questions that seemingly contradict themselves like $\P\ca{Y_{X=1}=1, X=0}$). \cite{pearl1999probabilities}.
+What does $\P\ca{Y_{X=a}=b|E}$ mean? Why is it not $\CP{Y=b}{\mathrm{do}(X=a), E}$?
+We intentionally consider a new, ``imagined'' variable $Y_{X=a}$ that behaves like $Y$ would when $X=a$, but we hold all other so-called exogenous factors, $E$, constant. This lets us control for exogenous factors that may contradict $X=a$. This construction avoids previous difficulties probabilistic definitions of causality had \cite{pearl1999probabilities}.
 
-TODO(vlad17): expand/distill above paragraph, add a diagram constructed base on the above paper.
-
-TODO(vlad17): add a bibtex entry for the paper above and add bibtex to the compilation process.
+This construction is, more formally, a new causal submodel, and avoids the apparent contradiction that the first $\mathrm{do}$-based interpretation has \cite{pearl1999probabilities}. The submodel considers a copy of the original model's subgraph, but fixes $X=a$ (overriding any setting $E$ gives for $X$).
 
 \section{Mediation}
 
-There exist causal paths that are not one edge long (TODO(vlad17): example, with picture; graphxy?).
+There exist causal paths that are not one edge long:
+$$\xymatrix{
+  A \ar[r]\ar@/_10pt/[rr] & B \ar[r] & C
+}
+$$
+where $A$ is taking extra melatonin, $B$ is initiating your body's circadian night cycle, and $C$ is falling asleep. The act of taking melatonin itself might be relaxing to people (via the placebo effect), which could help them fall asleep.
 
-Wherever this happens a natural question how much of the root cause is the direct effect or indirect effects? This affects future treatments.
+In these kinds of situations, the effect of the mediator $B$ is in question, relative to $A$, in terms of the result, $C$. This brings us to the general question we might ask about mediators:
 
-(TODO(vlad17): draw a picture; use graphxy?). Image description: The mediator of ``Department you apply to'' explains Simpson' paradox because gender affects the department applied to and both of those affect the admissions outcome. In this case, the direct and indirect effects have a reverse orientation.
+\begin{enumerate}
+\item How much of the root cause is the direct effect or indirect effects? This affects future treatments, and informs, e.g., how much melatonin you should take.
+\item Can a mediator with an opposite effect explain some paradoxes away?\footnote{Yet another question, related to mediation, which may explain $A\rightarrow C$ effects \textit{through} proposed intermediary $B$ effects, is whether we can identify such effects, and what are the accuracies of models missing such intermediaries? When are we done finding mediators?}
+\end{enumerate}
 
-TODO(vlad17): aligned confounders: smoking gene and smoking (cite corresponding paper mentioned by Pearl, mention effect sizes.
+The second question has a salient example, with $A$ being gender, $B$ being the department applied to, and $C$ being the admission indicator. This explains the Simpson's paradox in Berkeley admissions, where per-department females are favored, yet school-wide males are. It's fully explained by an inverse mediator effect.
+
+In both cases, however, we have the difficult task of identifying \textit{to what degree} effects of mediation impact a final result.
 
 \subsection{Measures of Mediation}
 
-The book proposes \textbf{controlled} and \textbf{natural} measures of mediation. For simplicity, we consider binary indicator variables when estimating the effect of $X$ on $Y$ with a mediator $M$.\footnote{This chapter helps assess proposed mediators versus their lack of mediators, but there's a more metaphiscally dubious question at hand here where we wonder ``where are we done?'' Why is the model $X\rightarrow Y$ vs $X\rightarrow A \rightarrow Y$? Why can't it be $X\rightarrow A \rightarrow B\rightarrow Y$ or $X\rightarrow A \rightarrow B\rightarrow C\rightarrow Y$? When do you stop being fine-grained enough?}
+The book proposes \textbf{controlled} and \textbf{natural} measures of mediation. For simplicity, we consider binary indicator variables when estimating the effect of $X$ on $Y$ with a mediator $M$ \cite{pearl2014interpretation}.\footnote{This chapter helps assess proposed mediators versus their lack of mediators, but there's a more metaphiscally dubious question at hand here where we wonder ``where are we done?'' Why is the model $X\rightarrow Y$ vs $X\rightarrow A \rightarrow Y$? Why can't it be $X\rightarrow A \rightarrow B\rightarrow Y$ or $X\rightarrow A \rightarrow B\rightarrow C\rightarrow Y$? When do you stop being fine-grained enough?}
 
-TODO(vlad17): draw the chain
+For starters, we have the total effect of the treatment:
+$$
+\mathrm{TE}=\CE{Y}{\mathrm{do}(X=1)}-\CE{Y}{\mathrm{do}(X=0)}
+$$
+
+Then we have the effect due directly to the treatment
 
 \begin{align*}
   \mathrm{CDE}(m)&=\CP{Y=1}{\mathrm{do}(X=1), \mathrm{do}(M=m)} -\CP{Y=1}{\mathrm{do}(X=0), \mathrm{do}(M=m)}\\
-  \mathrm{NDE}(m)&=\CP{Y_{M=m}=1}{\mathrm{do}(X=1)} -\CP{Y_{M=m}=0}{\mathrm{do}(X=0)}
+  \mathrm{NDE}&=\CP{Y_{M|X=0}=1}{\mathrm{do}(X=1)} -\CP{Y_{M|X=0}=0}{\mathrm{do}(X=0)}
 \end{align*}
 
-The CDE controls $M$ and asks how $X$ increases the probability of $Y$. The NDE considers how $M$ changes naturally due to changes in $X$, and lets those affect the probability of $Y_{M=m}=0$, but only keeping $M$ constant in a counterfactual.
-
-TODO(vlad17): look for an example distinguishing the two in the book
+The CDE controls $M$ and asks how $X$ increases the probability of $Y$. The NDE considers how much the treatment affects the outcome, had the mediator $M|X=0$ behaved as it would without the treatment.
 
 $$
-  \mathrm{NIE}(m)=\CP{Y_{M=1}=1}{\mathrm{do}(X=1)} -\CP{Y_{M=0}=0}{\mathrm{do}(X=0)}
+  \mathrm{NIE}=\CP{Y_{M|X=1}=1}{\mathrm{do}(X=0)} -\CP{Y_{M|X=0}=0}{\mathrm{do}(X=0)}
 $$
 
-TODO(vlad17): NDE? Look for an example distinguishing the two in the book
+The net indirect effect measures what the impact of the treatment $X$ is through the mediator $M$. Note by its definition, we can't have a controlled indirect effect (we're controlling the thing that we would be having an effect through).
 
-Alternatively consider (and ref for generality the \nurl{https://ftp.cs.ucla.edu/pub/stat_ser/r389.pdf}{summary paper})
-
-\subsection{Total Effect}
-
-CDE + CIE does not equal total effect, but NDE - NIE does! TODO look at an example from the book or paper.
+One nice property is that $\mathrm{TE}=\mathrm{NIE}+\mathrm{NDE}$.
 
 \section{Conclusion}
 
