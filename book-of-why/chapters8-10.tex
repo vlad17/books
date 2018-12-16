@@ -129,29 +129,17 @@ Pearl concludes with three notes on modern AI and why we need to apply more of h
 
 \subsection{Current Approaches Importantly Miss Causality}
 
-TODO(vlad17): review discussion in ch10 about this, deep learning, RL.
+Approaches cannot be ``model-free'' in the sense that they make causal statements while not positing the assumption of some causal model.\footnote{This seems strange to me; why can't we put some prior over causal models? This makes some causal assumptions, sure, but one can make them pretty vague. Is there a fundamental conflict between the efficiency of the analysis in terms of data necessary and the diffuseness of the prior over causal models we consider?}
 
-\subsection{Causality Addresses Distribution Shift}
+Pearl argues that existing ``big data'' approaches don't handle transportability rigorously enough to succeed, which lets us generalize statistical models from certain populations to others by assuming the preservation of partial causal structure.
 
-Handling distribution shift is essential to strengthening AI because it improves the ability to generalize by enabling the agent to learn how to deal with new environments.
+\subsection{Causality Can Address Distribution Shift}
 
-Transportability Fig. 10.1, 10.2. TODO(vlad17): find the associated paper and write this up -- how do we robustly estimate $P(W|X)$?
-
-% https://ftp.cs.ucla.edu/pub/stat_ser/r372-a.pdf
-% https://ftp.cs.ucla.edu/pub/stat_ser/r400-reprint.pdf
-
-footnote: vs. hindsight experience replay, how is that not this.
+Handling distribution shift is essential to strengthening AI because it improves the ability to generalize by enabling the agent to learn how to deal with new environments. Pearl describes his research on performing transportability when the different but similar causal models from sampled populations are known \cite{pearl2014external}.\footnote{What about when their causal assumptions are unknown? Why can't statistical, associative procedures like those described in the previous footnote infer the degree to which we can transfer by implicitly placing a prior on the relative changes between causal models from different populations, like Hindsight Experience Replay \cite{andrychowicz2017hindsight}?}
 
 \subsection{AI Safety}
 
-TODO(vlad17): flesh out high-level points based on interpretability
-
-\section*{A Personal Note}
-
-Note this section is dedicated to my general afterthoughts, not the original work.
-
-TODO(vlad17): true automation through proposition of causal structure.
-
+Pearl concludes with a note that notions of causality like $\mathrm{PN}$ and $\mathrm{PS}$ create a natural language for expressing moral blame, and therefore a medium for encoding safe interactions into autonomous agents.
 
 \bibliography{biblio}{}
 \bibliographystyle{unsrt}
