@@ -19,7 +19,21 @@ for i in *.tex ; do
     echo "  compiling ${ARGUMENT} into ${ARGUMENT%.tex}.pdf"
     AUXNAME="${ARGUMENT%.tex}.aux"
     pdflatex -shell-escape -interaction=nonstopmode -file-line-error "$ARGUMENT" | grep -i ".*:[0-9]*:.*\|warning" >/dev/null 2>/dev/null
-    bibtex -terse "$AUXNAME"  
+    bibtex -terse "$AUXNAME"
+    pdflatex -shell-escape -interaction=nonstopmode -file-line-error "$ARGUMENT" | grep -i ".*:[0-9]*:.*\|warning" >/dev/null 2>/dev/null
+    pdflatex -shell-escape -interaction=nonstopmode -file-line-error "$ARGUMENT" | grep -i ".*:[0-9]*:.*\|warning" 
+done
+echo 'going back up ..'
+cd ..
+
+cd high-output-management
+echo 'entering high-output-management/'
+for i in *.tex ; do
+    ARGUMENT="$i"
+    echo "  compiling ${ARGUMENT} into ${ARGUMENT%.tex}.pdf"
+    AUXNAME="${ARGUMENT%.tex}.aux"
+    pdflatex -shell-escape -interaction=nonstopmode -file-line-error "$ARGUMENT" | grep -i ".*:[0-9]*:.*\|warning" >/dev/null 2>/dev/null
+    bibtex -terse "$AUXNAME"
     pdflatex -shell-escape -interaction=nonstopmode -file-line-error "$ARGUMENT" | grep -i ".*:[0-9]*:.*\|warning" >/dev/null 2>/dev/null
     pdflatex -shell-escape -interaction=nonstopmode -file-line-error "$ARGUMENT" | grep -i ".*:[0-9]*:.*\|warning" 
 done
