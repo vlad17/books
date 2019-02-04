@@ -1,0 +1,33 @@
+\begin{thebibliography}{1}
+
+\bibitem{pearl2018book}
+Judea Pearl and Dana Mackenzie.
+\newblock {\em The Book of Why: The New Science of Cause and Effect}.
+\newblock Basic Books, 2018.
+
+\bibitem{pearl1999probabilities}
+Judea Pearl.
+\newblock Probabilities of causation: three counterfactual interpretations and
+  their identification.
+\newblock {\em Synthese}, 121(1-2):93--149, 1999.
+
+\bibitem{pearl2014interpretation}
+Judea Pearl.
+\newblock Interpretation and identification of causal mediation.
+\newblock {\em Psychological methods}, 19(4):459, 2014.
+
+\bibitem{pearl2014external}
+Judea Pearl and Elias Bareinboim.
+\newblock External validity: From do-calculus to transportability across
+  populations.
+\newblock {\em Statistical Science}, pages 579--595, 2014.
+
+\bibitem{andrychowicz2017hindsight}
+Marcin Andrychowicz, Filip Wolski, Alex Ray, Jonas Schneider, Rachel Fong,
+  Peter Welinder, Bob McGrew, Josh Tobin, OpenAI~Pieter Abbeel, and Wojciech
+  Zaremba.
+\newblock Hindsight experience replay.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  5048--5058, 2017.
+
+\end{thebibliography}
