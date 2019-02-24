@@ -9,6 +9,139 @@
 
 \maketitle
 
+Notes on Chapters 8 to 10 of Pearl and Mackenzie's \textit{Book of Why} \cite{pearl2018book}.
+
 \setcounter{section}{7}
+\section{Counterfactuals}
+
+Counterfactual reasoning is essential for:
+
+\begin{enumerate}
+\item Assigning blame (e.g., court room case)
+\item Affecting future policy (e.g., climate change) -- with an inductive assumption, we can propose policy reducing greenhouse gas emissions by showing that reducing certain types of air pollution would have averted natural disasters.
+\end{enumerate}
+
+\subsection{Types of Counterfactual Analysis}
+
+There are two causal classifications. A cause can be none, one, or both.
+
+\begin{enumerate}
+\item \textbf{Necessary}: $A$ necessarily causes $B$ if without $A$, $B$ would not have happened
+\item \textbf{Sufficient}: $A$ sufficiently causes $B$ if $A$ happening results in $B$ happening
+\end{enumerate}
+
+\textbf{Example}. Necessary not sufficient cause. See below piano example in Section~\ref{sec:directness-causation}.
+
+\textbf{Example}. Sufficient not necessary cause. Consider the firing squad with two soldiers from Chapter 1. If both soldiers fire, then \textit{in that world} neither is necessary (since the other would have killed the prisoner) but both are sufficient.
+
+Why do we need to bother with sufficiency? Consider using a match to burn down a house. Is the arson the match's fault or the oxygen's? Both are necessary, but only one is useful, and that's the one that has stronger sufficient causal strength.
+
+\subsection{Directness and Causation}\label{sec:directness-causation}
+
+Directness and causation are orthogonal. For instance, Joe can block the fire exit with a large object, causing someone to die. Even though we have a mediator (large object blocking a pathway), we still have sufficient indirect causation.
+
+\subsection{A New Language for Counterfactual Quantification}
+
+Both necessity and sufficiency of a cause have numerical extensions quantifying to what degree $A$ causes $B$. Gradation of the degree to which $A$ causes $B$ is essential because $A$ may only increase the probability of $B$, rather than deterministically inducing it, or other confounders may be involved.
+
+It's too weak to have binary notions of necessary and sufficient:
+
+\begin{quote}
+  Alice attempts to shoot Bob, but misses. Bob, in an attempt to flee, runs under a building where someone is moving in with a piano. The piano falls by accident, killing Bob.
+\end{quote}
+
+Was the gunshot sufficient to kill Bob? Not really, the gunshot missed and the probability of the piano falling on Bob is low. It would be unreasonable for Alice to plan to kill Bob by scaring him with a gunshot into running under a piano. We wouldn't charge Alice with manslaughter, just attempted manslaughter.
+
+Was the gunshot necessary to kill Bob? This shows that the ``necessary'' definition is underspecified. In general, Bob can die from natural causes, so a gunshot is not strictly necessary. However, we probably want to hold Bob's general health constant when evaluating whether the gunshot was necessary to kill Bob. In that case, the gunshot was necessary to kill Bob, since Bob only fled due to the gunshot.
+
+This tells us we need a richer language to express what we mean by ``strength of a cause'' as well as sufficiency and necessity because causality is dependent on what world we're analyzing the causal effect in.
+
+\subsection{Expressing Causality Formally}
+
+For simplicy, we're querying the causal effect of the indicator $X$ being activated on the indicator $Y$.
+
+The probability of necessity, $\textrm{PN}$, is:
+
+$$
+\textrm{PN}=\CP{Y_{X=0}=0}{X=1,Y=1}\,.
+$$
+
+The probability of sufficiency, $\textrm{PS}$, is:
+
+$$
+\textrm{PS}=\CP{Y_{X=1}=1}{X=0,Y=0}\,.
+$$
+
+What does $\P\ca{Y_{X=a}=b|E}$ mean? Why is it not $\CP{Y=b}{\mathrm{do}(X=a), E}$?
+We intentionally consider a new, ``imagined'' variable $Y_{X=a}$ that behaves like $Y$ would when $X=a$, but we hold all other so-called exogenous factors, $E$, constant. This lets us control for exogenous factors that may contradict $X=a$. This construction avoids previous difficulties probabilistic definitions of causality had \cite{pearl1999probabilities}.
+
+This construction is, more formally, a new causal submodel, and avoids the apparent contradiction that the first $\mathrm{do}$-based interpretation has \cite{pearl1999probabilities}. The submodel considers a copy of the original model's subgraph, but fixes $X=a$ (overriding any setting $E$ gives for $X$).
+
+\section{Mediation}
+
+There exist causal paths that are not one edge long:
+$$\xymatrix{
+  A \ar[r]\ar@/_10pt/[rr] & B \ar[r] & C
+}
+$$
+where $A$ is taking extra melatonin, $B$ is initiating your body's circadian night cycle, and $C$ is falling asleep. The act of taking melatonin itself might be relaxing to people (via the placebo effect), which could help them fall asleep.
+
+In these kinds of situations, the effect of the mediator $B$ is in question, relative to $A$, in terms of the result, $C$. This brings us to the general question we might ask about mediators:
+
+\begin{enumerate}
+\item How much of the root cause is the direct effect or indirect effects? This affects future treatments, and informs, e.g., how much melatonin you should take.
+\item Can a mediator with an opposite effect explain some paradoxes away?\footnote{Yet another question, related to mediation, which may explain $A\rightarrow C$ effects \textit{through} proposed intermediary $B$ effects, is whether we can identify such effects, and what are the accuracies of models missing such intermediaries? When are we done finding mediators?}
+\end{enumerate}
+
+The second question has a salient example, with $A$ being gender, $B$ being the department applied to, and $C$ being the admission indicator. This explains the Simpson's paradox in Berkeley admissions, where per-department females are favored, yet school-wide males are. It's fully explained by an inverse mediator effect.
+
+In both cases, however, we have the difficult task of identifying \textit{to what degree} effects of mediation impact a final result.
+
+\subsection{Measures of Mediation}
+
+The book proposes \textbf{controlled} and \textbf{natural} measures of mediation. For simplicity, we consider binary indicator variables when estimating the effect of $X$ on $Y$ with a mediator $M$ \cite{pearl2014interpretation}.\footnote{This chapter helps assess proposed mediators versus their lack of mediators, but there's a more metaphysically dubious question at hand here where we wonder ``where are we done?'' Why is the model $X\rightarrow Y$ vs $X\rightarrow A \rightarrow Y$? Why can't it be $X\rightarrow A \rightarrow B\rightarrow Y$ or $X\rightarrow A \rightarrow B\rightarrow C\rightarrow Y$? When do you stop being fine-grained enough?}
+
+For starters, we have the total effect of the treatment:
+$$
+\mathrm{TE}=\CE{Y}{\mathrm{do}(X=1)}-\CE{Y}{\mathrm{do}(X=0)}
+$$
+
+Then we have the effect due directly to the treatment
+
+\begin{align*}
+  \mathrm{CDE}(m)&=\CP{Y=1}{\mathrm{do}(X=1), \mathrm{do}(M=m)} -\CP{Y=1}{\mathrm{do}(X=0), \mathrm{do}(M=m)}\\
+  \mathrm{NDE}&=\CP{Y_{M|X=0}=1}{\mathrm{do}(X=1)} -\CP{Y_{M|X=0}=0}{\mathrm{do}(X=0)}
+\end{align*}
+
+The CDE controls $M$ and asks how $X$ increases the probability of $Y$. The NDE considers how much the treatment affects the outcome, had the mediator $M|X=0$ behaved as it would without the treatment.
+
+$$
+  \mathrm{NIE}=\CP{Y_{M|X=1}=1}{\mathrm{do}(X=0)} -\CP{Y_{M|X=0}=0}{\mathrm{do}(X=0)}
+$$
+
+The net indirect effect measures what the impact of the treatment $X$ is through the mediator $M$. Note by its definition, we can't have a controlled indirect effect (we're controlling the thing that we would be having an effect through).
+
+One nice property is that $\mathrm{TE}=\mathrm{NIE}+\mathrm{NDE}$.
+
+\section{Conclusion}
+
+Pearl concludes with three notes on modern AI and why we need to apply more of his research there.
+
+\subsection{Current Approaches Importantly Miss Causality}
+
+Approaches cannot be ``model-free'' in the sense that they make causal statements while not positing the assumption of some causal model.\footnote{This seems strange to me; why can't we put some prior over causal models? This makes some causal assumptions, sure, but one can make them pretty vague. Is there a fundamental conflict between the efficiency of the analysis in terms of data necessary and the diffuseness of the prior over causal models we consider?}
+
+Pearl argues that existing ``big data'' approaches don't handle transportability rigorously enough to succeed, which lets us generalize statistical models from certain populations to others by assuming the preservation of partial causal structure.
+
+\subsection{Causality Can Address Distribution Shift}
+
+Handling distribution shift is essential to strengthening AI because it improves the ability to generalize by enabling the agent to learn how to deal with new environments. Pearl describes his research on performing transportability when the different but similar causal models from sampled populations are known \cite{pearl2014external}.\footnote{What about when their causal assumptions are unknown? Why can't statistical, associative procedures like those described in the previous footnote infer the degree to which we can transfer by implicitly placing a prior on the relative changes between causal models from different populations, like Hindsight Experience Replay \cite{andrychowicz2017hindsight}?}
+
+\subsection{AI Safety}
+
+Pearl concludes with a note that notions of causality like $\mathrm{PN}$ and $\mathrm{PS}$ create a natural language for expressing moral blame, and therefore a medium for encoding safe interactions into autonomous agents.
+
+\bibliography{biblio}{}
+\bibliographystyle{unsrt}
 
 \end{document}
