@@ -23,7 +23,7 @@ Work backwards from what the market needs. What do customers desire?
 \item Low cost
 \end{enumerate}
 
-Then the question is, how do you trade off each of the above? At Intel, the tradeoff seemed to be
+Then the question is, how do you trade off each of the above? At Intel, the trade-off seemed to be
 
 \begin{align*} 
   \min \,\,\,& \texttt{cost}\\
@@ -35,7 +35,7 @@ But how should you set up the optimization problem in the context of your busine
 
 Thus, the question of determining this aspect of your business model could in part be answered by considering the following.
 \begin{enumerate}
-\item Profile your customer to see what they care about more. For instances, in some industries, like ecommerce, cost is actually not as important as fast delivery turnaround (maybe, just guessing).
+\item Profile your customer to see what they care about more. For instance, in some industries, like e-commerce, cost is actually not as important as fast delivery turnaround (maybe, just guessing).
 \item It just comes from the industry, market, and your business model or unique approach. This is what makes your business special: it's your business model
 \end{enumerate}
 
@@ -51,7 +51,7 @@ Don’t forget to incorporate non-productive tasks into your planning.
 \item Queue wait time in components that have limited capacity
 \end{enumerate}
 
-The above planning informs inventory purchases. For example, in a development environment, if your Travis CI only handles 1 job at a time then you can’t merge in more than one PR every 30 minutes or however long your build time is. In turn, you should never bottleneck yourself on CI by buying more concurrent builds as you get more developers.
+The above planning informs inventory purchases. For example, in a development environment, if your Travis Continuous Integration only handles 1 job at a time then you can’t merge in more than one PR every 30 minutes or however long your build time is. In turn, you should never bottleneck yourself on CI by buying more concurrent builds as you get more developers.
 
 \section{Indicators}
 
@@ -90,7 +90,7 @@ If you have two dependent flows that are both deep and need to converge to creat
 
 Fail early. Capture failures at the lowest value stage (earlier) that is possible to detect them (needs to be traded off with detection costs). For instance, in candidate recruitment: assess candidate interest early in the pipeline, and if they’re just shopping around then they’re not worth the interview time investment.
 
-Introduce synchronization points as much as possible between parallel flows. Two parallel but dependent features that two teams are working should be incrementalized and interacting at as early stages as possible (rather than build two things separately then connect). An example in code development would be to rebase often.
+Introduce synchronization points as much as possible between parallel flows. Two parallel but dependent features that two teams are working should be incrementalized and should be interacting at as early stages as possible (rather than build two things separately then connect). An example in code development would be to rebase often.
 
 Program slack in volumes of output so that failures downstream can be compensated for. Deadlines for a feature from, say, a customer request, should be made with slack.
 
@@ -110,7 +110,7 @@ Gated tests, which “hold-the-line” until the completely check out a batch of
 
 \subsection{Sampling-based Tests}
 
-Sampling-based tests probibalistically evaluate for potential failures by taking look at only parts of the actual total amount of product you’re producing. If they fail then they indicate there’s a broader problem
+Sampling-based tests probabilistically evaluate for potential failures by taking look at only parts of the actual total amount of product you’re producing. If they fail then they indicate there’s a broader problem
 
 \begin{itemize}
 \item Random selection diff re-review
