@@ -90,7 +90,7 @@ If you have two dependent flows that are both deep and need to converge to creat
 
 Fail early. Capture failures at the lowest value stage (earlier) that is possible to detect them (needs to be traded off with detection costs). For instance, in candidate recruitment: assess candidate interest early in the pipeline, and if they’re just shopping around then they’re not worth the interview time investment.
 
-Introduce synchronization points as much as possible between parallel flows. Two parallel but dependent features that two teams are working should be incrementalized and interacting at as early stages as possible (rather than build two things separately then connect). An example in code development would be to rebase often.
+Introduce synchronization points as much as possible between parallel flows. Two parallel but dependent features that two teams are working should be incrementalized and should be interacting at as early stages as possible (rather than build two things separately then connect). An example in code development would be to rebase often.
 
 Program slack in volumes of output so that failures downstream can be compensated for. Deadlines for a feature from, say, a customer request, should be made with slack.
 
