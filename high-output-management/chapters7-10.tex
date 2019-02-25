@@ -15,117 +15,91 @@ Note that the sections are structured according to topics, not the chapters them
 
 \section{The Centralization-Decentralization Dichotomy}
 
-Work backwards from what the market needs. What do customers desire?
+Modern organizations need to carefully walk the centralization-decentralization tradeoff line.
+Centralization permits more consistent quality and take advantage of economies at scale, but at the same time decentralization allows for local optimization (profits, increases in quality, reduction in costs by taking advantage of local offerings).
 
-\begin{enumerate}
-\item Timely delivery
-\item High quality
-\item Low cost
-\end{enumerate}
+Conglomerates used to own entire verticals globally, but now there is increasing national support and competitors on a global business scene.
+Uber lost to a Chinese mobile app for transportation because of national support and localization advantages.
 
-Then the question is, how do you trade off each of the above? At Intel, the tradeoff seemed to be
-
-\begin{align*} 
-  \min \,\,\,& \texttt{cost}\\
-  \text{s.t.}\,\,\, & \texttt{quality}\ge \text{some acceptable threshold} \\
- & \texttt{delivery time}\le \text{sufficiently timely}
-\end{align*}
-
-But how should you set up the optimization problem in the context of your business? Andy does not answer this question for you. I suspect that the decision to, e.g., minimize cost subject to thresholds on quality and delivery time instead of minimize delivery time subject to cost and quality constraints (or some completely different optimization resulting from different latent objectives) is one of a general business model. For instance, for Amazon prime, delivery time is much more important.
-
-Consider the following approaches.
-\begin{enumerate}
-\item Profile your customer to see what they care about more. For instances, in some industries, like ecommerce, cost is actually not as important as fast delivery turnaround (maybe, just guessing).
-\item It just comes from the industry, market, and your business model or unique approach. This is what makes your business special: it's your business model
-\end{enumerate}
-
-\section{Production planning}
-
-The key insight is to \textit{consider planning tasks with critical-path planning in the workflow DAG}. Work backwards from delivery time and requirements to construct the DAG of tasks to perform, and track the critical path progress over time.
-
-Don’t forget to incorporate non-productive tasks into your planning.
-\begin{enumerate}
-\item Assembly
-\item Testing
-\item Inspection
-\item Queue wait time in components that have limited capacity
-\end{enumerate}
-
-The above planning informs inventory purchases. For example, in a development environment, if your Travis CI only handles 1 job at a time then you can’t merge in more than one PR every 30 minutes or however long your build time is. In turn, you should never bottleneck yourself on CI by buying more concurrent builds as you get more developers.
-
-\section{Indicators}
-
-Indicators enable appropriate and accurate forecasting for decision making, such as:
-
-\begin{enumerate}
-\item Sales forecasts
-\item Manpower quantity and quality
-\item Equipment status and output rate
-\item Raw materials
-\end{enumerate}
-
-Taken on their own, indicators can result in a negative feedback loop. Paired indicators resolve Goodhart’s law-like bias from metrics. 
+Centralization/decentralization decisions need to be made in a way that effectively organizes a team of teams.
 
 \begin{itemize}
-\item For instance, suppose you’re measuring custodial staff by square feet cleaned alone. This may cause rooms to be poorly cleaned. By adding a complementary indicator, like the number of reports of unclean rooms, you can properly account for quality.
-\item Analogously, if you only record the number of shortages, then you may over-supply your inventory to avoid shortages. But if you also record end-of-day remaining inventory then you know not to over-invest.
-\item In software, consider using both the number of PRs (``diffs'' or ``branches'') merged as well as per-PR SLOC as a measure of developer productivity (neither is perfectly accurate, but both should be considered).
+\item An instance where centralization is a poor choice would be in setting a payscale for a franchise. Local branch managers would likely have a better sense of what the standards for a particular region (including local factors like cost of living) would be. Analogously, local managers likely have the best context to make decisions about hiring or firing employees.
+\item However, multiple business units in a single-objective software company would likely conflict. This occurs in practice, resulting in sales teams within the same company fighting over the same customers. This confuses brand messaging and needlessly wastes effort when the whole company has already captured an entire account.
 \end{itemize}
 
-Provide variance estimates on measurements. Not every number should be taken under equal consideration. With variance estimates, you can add slack to scale with desired confidence in allocations. Critical processes may need more slack.
 
-In trend prediction,\footnote{This section is pretty weird, kind of like Andy just teaching you forecasting.} make sure that you use:
+\section{Partitioning an Organization}
+
+Organizations can be partitioned along two different dimensions.
+
+\textbf{Mission-oriented} partitions, or \textbf{business units}, partition along industry verticals, with the unit taking care of all of its needs end to end for a business product (e.g., splitting into a northwest region, southwest region, etc.). These units operate individually, fulfilling their own mission
+
+\textbf{Functional} partitions, or \textbf{functional units}, divide by separate functionalities. These are interdependent to achieve end-to-end business goals, and instead specialize on a particular horizontal in terms of what they can do.
+
+Hybrid organizations are split along both types of units (possibly at different levels, too). This decision should be made in a way that maximizes responsiveness and managerial leverage (both can be improved by making a certain set of functional/business unit splits---the decision is context-dependent, mostly on the interaction pattern between horizontals).
+
+When would one create a functional unit? When there are large economies of scale and deep verticals for their contractors and vendors, it makes sense to isolate that as a single functional component which has mastery over a difficult component to have high-leverage value add for a fixed amount of company resources.
+
+When would one create a business unit? When transaction, communication, or transportation costs are large for the interaction of multiple broken down functional or business units necessary to represent the end-to-end functionality of a single business unit.
+
+There is a \textit{fundamental tradeoff} (which makes this a useful leverage when designing an organization), which is that:
 \begin{itemize}
-\item Historical data
-\item Capture seasonality
-\item Autoregressive trends
-\item Nonlinearity (make sure you know what kind you need to have in your models)
+\item Functional units need to inter- and intra-communicate well, which is costly.
+\item Business units need to solve problems across their entire vertical, which is costly.
 \end{itemize}
 
-Properly taking advantage of trends can lead to a lot of value creation (see the \nurl{https://www.cnbc.com/2018/05/03/how-ray-dalio-helped-launch-mcdonalds-chicken-mcnugget.html}{Bridgewater example}).
+For example, Intel might extract manufacturing due to the many vendor requirements for building chips. Similarly, sales requires a shared pool of business connections (Fig.~\ref{fig:partitioning}).
 
-\section{De-risking Parallel Flows}
+\begin{figure}[h]
+  \centering
+  \includegraphics[height=10cm]{partitioning.pdf}
+  \caption{\label{fig:partitioning} }
+\end{figure}
 
-If you have two dependent flows that are both deep and need to converge to create value, then you're undertaking a lot of risk. For instance, consider some manufacturing process that transforms raw material into goods and an analogous sales process that are both required to start early (for long sales cycles) that result into a successful deal (see p.26 of the book for a good picture).
+  Facebook has VR and AR in its own building b/c it's a specialized vertical (business unit), but Infrastructure teams are spread throughout all the buildings b/c they interleave with a lot of product functionality (functional unit).
 
-Fail early. Capture failures at the lowest value stage (earlier) that is possible to detect them (needs to be traded off with detection costs). For instance, in candidate recruitment: assess candidate interest early in the pipeline, and if they’re just shopping around then they’re not worth the interview time investment.
+\textit{Grove's law}: eventually all large organizations hybridize.\footnote{This doesn't really say that much to me, just that the optimization is nontrivial and requires a mix of both.}
 
-Introduce synchronization points as much as possible between parallel flows. Two parallel but dependent features that two teams are working should be incrementalized and interacting at as early stages as possible (rather than build two things separately then connect). An example in code development would be to rebase often.
+\section{Dual reporting}
 
-Program slack in volumes of output so that failures downstream can be compensated for. Deadlines for a feature from, say, a customer request, should be made with slack.
+Any multi-faceted, complicated organization is a system with many moving parts, each of which has a component prone to independent failure. As such, failures (or delays in general) in the system as a whole can increase with a rate exponential in the number of subcomponents.
 
-Introduce additional quality assurance to take into account the additional risk that the parallel flows incur whenever cheap, continuous tests are amenable (need to trade off w/ quality assurance risk).
+For example, should plant security report to the local plant manager or the security manager (who is at corporate headquarters)? Need to give information to both and fulfill requests from both, so report to both. This is \textbf{dual reporting}.
 
-\section{Quality Assurance}
+What to do if a component that someone's responsible for has no corresponding manager that would own the supervision for that component's quality. For instance, plant managers might have a general manager responsible for their entire region's overall production, but there's no one to report to for technical oversight. In these cases, we can emulate a senior technical manager by combining a group of individual technical managers who are responsible for themselves. This is \textbf{group of peers} dual reporting (Fig.~\ref{fig:peers}).
 
-\subsection{Gated Tests}
+\begin{figure}[h]
+  \centering
+  \includegraphics[height=6cm]{peers.pdf}
+  \caption{\label{fig:peers} }
+\end{figure}
 
-Gated tests, which “hold-the-line” until the completely check out a batch of a product, or take a while to decisively complete, but don’t allow further changes to be made. In software:
+This scenario comes up in software during, e.g., design review, in absence of a tech lead. Note that dual reporting can be performed across functional or business units.
 
-\begin{itemize}
-\item Diff review
-\item Pen test
-\item CI is a very cheap gated test
-\end{itemize}
+One related but distinct concept is that of the \textbf{multi-plane organization}. Whereas dual reporting is about overlapping safeguards on a single component, multi-plane organizations assign an individual to several disjoint responsibilities. This is distinct from dual reporting because you’re reporting regarding disjoint responsibilities. Supervision does not overlap. Roles are managed, not people.
 
-\subsection{Sampling-based Tests}
+\section{Modes of Control}
 
-Sampling-based tests probibalistically evaluate for potential failures by taking look at only parts of the actual total amount of product you’re producing. If they fail then they indicate there’s a broader problem
-
-\begin{itemize}
-\item Random selection diff re-review
-\item Fuzzy testing and nightly large builds or end-to-end tests, can be coupled with bisection to get gated-level test quality (bisection on commits, for instance).
-\end{itemize}
-
-\section{Work simplification}
-
-If you list out the steps for production with fine detail, you can optimize away frequent unnecessary steps.
+There are three operational modes of control.
 
 \begin{enumerate}
-\item List out the steps rigorously
-\item Set a goal for step reduction
-\item Call each step into question
+\item \textbf{Free market forces}. These are only applicable when there's a concrete value that can be established. In commodity marketplaces, this means that there is a dollar value determined for the commodity in context. In the workplace, these situations may be difficult to find, but occur in situations where vendors exchange services specified at a detailed level, e.g., software contractors for creating websites. Alternatively, concretely defined requirements for technical progression at Facebook have metrics attached (with complimentary indicators for quality). They put a number on what it takes to move up the ladder.
+\item \textbf{Contractual obligations}. Long-term obligations involving coordination with a group of people require contracts (e.g., labor). For instance, the power company gets a license to access a resource by the government, effectively becoming a sponsored monopoly, but then it has to play on the same team by providing electricity at non-monopolistic prices. Alternatively, employment contracts for most salaried work specify vague duties that require adherence to a general team objective.
+\item \textbf{Cultural values}. These are shared set of values, objectives, and methods. These are powerful tools, but they can be difficult to establish. They can only really be articulated and set by example and strict adherence. One concrete way of describing what corporate values really are,\footnote{This is in opposition to the common misinterpretation that quirks like workisng on doors or not wearing shoes or playing ping pong determine culture. At best, they are zealous expressions of a latent culture. The following interpretation of what company culture ``really is'' was first mentioned to me by Ali Ghodsi.} how do you approach tradeoffs as a company in a consistent way? At Facebook, do you harvest information about users in order to improve their UX, and if so where does it stop? At personally identifiable information being available to non-support engineers.
 \end{enumerate}
+
+Choosing the right mode of control depends on the situational context. Andy Grove proposes a composite index termed the \textbf{CUA factor} which is a combination of complexity, uncertainty, and ambiguity. Depending on the personal motivation that is influencing an individual in the given scenario, and the CUA factor, an appropriate mode of control can be selected (Fig.~\ref{fig:control}).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[height=7cm]{control.pdf}
+  \caption{\label{fig:control} }
+\end{figure}
+
+High CUA and self-interest based motivation is chaotic by definition, since CUA means everyone has random objectives, and there’s no unifying aim (due to self interest).
+
+This has an \textit{essential} implication, which is that in highly uncertain situations, progress can only be created with groups and strong culture, which is why startups require focus on culture.
 
 \bibliography{biblio}{}
 \bibliographystyle{unsrt}
