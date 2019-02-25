@@ -86,11 +86,17 @@ Properly taking advantage of trends can lead to a lot of value creation (see the
 
 \section{De-risking Parallel Flows}
 
-If you have two dependent flows that are both deep and need to converge to create value, then you're undertaking a lot of risk. For instance, consider some manufacturing process that transforms raw material into goods and an analogous sales process that are both required to start early (for long sales cycles) that result into a successful deal (see p.26 of the book for a good picture).
+If you have two dependent flows that are both deep and need to converge to create value, then you're undertaking a lot of risk. For instance, consider some manufacturing process that transforms raw material into goods and an analogous sales process that are both required to start early (for long sales cycles) that result into a successful deal (Fig.~\ref{fig:parallel}).
 
-Fail early. Capture failures at the lowest value stage (earlier) that is possible to detect them (needs to be traded off with detection costs). For instance, in candidate recruitment: assess candidate interest early in the pipeline, and if they’re just shopping around then they’re not worth the interview time investment.
+\begin{figure}[h]
+  \centering
+  \includegraphics[height=10cm]{deep-parallel.pdf}
+  \caption{\label{fig:partitioning} }
+\end{figure}
 
-Introduce synchronization points as much as possible between parallel flows. Two parallel but dependent features that two teams are working should be incrementalized and should be interacting at as early stages as possible (rather than build two things separately then connect). An example in code development would be to rebase often.
+Fail early. Capture failures at the lowest value stage (earlier) that is possible to detect them (needs to be traded off with detection costs). For instance, in candidate recruitment: assess candidate interest early in the pipeline (i.e., during initial phone screens), and if they’re just shopping around then they’re not worth the interview time investment.
+
+Introduce synchronization points as much as possible between parallel flows. Two parallel but dependent features that two teams are working should be incrementalized and should be interacting at as early stages as possible (rather than building two things separately then connect). An example in code development would be to rebase often.
 
 Program slack in volumes of output so that failures downstream can be compensated for. Deadlines for a feature from, say, a customer request, should be made with slack.
 
@@ -110,7 +116,7 @@ Gated tests, which “hold-the-line” until the completely check out a batch of
 
 \subsection{Sampling-based Tests}
 
-Sampling-based tests probabilistically evaluate for potential failures by taking look at only parts of the actual total amount of product you’re producing. If they fail then they indicate there’s a broader problem
+Sampling-based tests probabilistically evaluate for potential failures by taking a look at only parts of the actual total amount of product you’re producing. If they fail then they indicate there’s a broader problem
 
 \begin{itemize}
 \item Random selection diff re-review
