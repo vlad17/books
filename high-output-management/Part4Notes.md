@@ -1,57 +1,16 @@
-Vlad’s notes
-
-Managers have two ways to elicit performance
-training
-motivation
-
-Motivation
-Can’t be fostered directly, needs an environment
-What does this mean? You can literally say this about anything that needs a mediator to act. Of course mgmt actions can affect motivation, even if there’s no “motivation wand” which directly instills motivation.
-
-Needs -> Drives -> Motivation
-
-To understand needs, need to see heirarchy of needs from maslow
-<pic of pyramid p160  ch 11>
-TODO in-meeting for each need, what needs to be fulfilled?
-
-lower need satisfied, higher takes over.
-
-Peak need: self-actualization. simply need to test their limits. This is strongest to tap into.
-
-Money
-money stops being important for its purchasing power after a base level
-but it’s important for esteem and self-actualization since it’s a measure of achievement.
-
-Above is also why you need measures of achievement that are task-relevant
-
-Fear
-Fear of failure prevents you from doing something, drops you a need level
-
-Task-relevant maturity
-pretty much what it sounds like. it’s per-employee and per-task.
-For low TRM, you need to be structured about the task
-For med TRM, you can be indiv-oriented, keep clear two way communication, support, etc.
-For high TRM, only establish objectives and monitor
-
-Perf revs section --- nothing much here. pros, cons, takeaways as structure. medium for task-relevant feedback
-
-Promotions and comp --- Grove introduces merit based as if it’s hot new shit but idk what the story is here.
-caution: routine raises by experience cause overcompensation.
-people peter out, make sure to recycle them but let them down easy.
-
-Training is the bosses’ job -- bc it’s their output!
-
-motivation is important, leads to higher performance
-can’t ever satisfy hunger.
-You can create situations that create motivation
-You can’t give someone motivation tablets
+### Motivation
+* This is important, as it leads to higher performance.
+  * You can’t ever satisfy hunger, so find a way to create it.
+  * There's no such thing as a motivation tablet.
 You have to create some facade that they believe in so that they will follow it
-Old forms of motivation
-insert picture of pyramid (hierarchy) 
-lower one overrides
-physiological - will I die tomorrow?
-safety/security - will my state of living maintain or improve?
-New forms
+
+![Pyramid of Motivation](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6JSQAJ7gcGGKg4QHRbaBGagL_WjKJ_arZYMBvSwK9297lxib8Yg)
+# The pyramid of motivation, the lower one overrides
+* __Physiological__
+  * will I die tomorrow?
+* __Safety/Security_
+  * will my state of living maintain or improve?
+New forms Used for management
 Social/Affiliation - Do I have pride in my org, do I have friends at work?
 silicon valley tech overemphasizes alignment with company goals. Not for motivation maybe, resolving Complexity Ambiguity
 more 
