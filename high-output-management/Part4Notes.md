@@ -1,4 +1,5 @@
-# Motivation
+# Part IV, The Players
+### Motivation
 * This is important, as it leads to higher performance.
   * You can’t ever satisfy hunger, so find a way to create it.
   * There's no such thing as a motivation tablet.
@@ -44,22 +45,29 @@ Lower in the Pyramid is more intrisic. Without the base, you cannot build higher
   * Need to weight internal things differently than external. Better Engineering is important, as is shipping code.
 * As a manager, your performance rating can’t be higher than your org.
 ### Assessment
-Level, listen, leave yourself out
-pro’s, cons, and takeaways
-you need to project your thoughts into their head. They don’t need to agree with you, then need to agree to do what you say
-You have to get poor performer to own up to their performance
-They Ignore, Deny, Blame others, Assume Responsibility, Find Solution
-Commitment to action is acceptable. As before, don’t need to agree
-Give review hardcopy in advance, then you both win when you discuss it
-Interviewing - there are tons of guides on this. It seems hard to evaluate, because all you have is a piece of paper and their words. Try to find reliable actor to vouch for them.
-they just list random interview techniques. there are tons of these online. If you want to interview someone, take time preparing, be direct, and get the answers you want.
-When some1 wants to quit, you have to give them what they want
-then you have to say that they deserve it
-Only if you value them. If you dont, then should still pretend, but let them go. oh no woopsiess.
-Money should compromise between performance and experience.
-Leveling up gives you more fat cash.
-Meets/exceeds
-promote at exceeds, maintain at meets. Some people stay at meets. These r nice people. Some people want exceeds. The goal is to get them to the level where they are meets forever, without having them start to underperform
-Peter principle
-recycle losers respectfully. This seems hard to do and is mentioned offhand.
-you need to train constantly and offer courses to improve others. Training courses are hard to make and should be vetted and practiced on experienced members first to fix flaws.
+* Level, listen, leave yourself out
+* You need to project your thoughts into their head. They don’t need to agree with you, then need to agree to do what you say.
+* Poor Performers
+ * You have to get a poor performer to own up to their performance.
+ * They Ignore, Deny, Blame others, Assume Responsibility, Find Solution. You have to get to the last step.
+ * Commitment to action is acceptable. As before, they don’t need to agree, just say they will do what you say.
+* Give a review hardcopy in advance, then you both win when you discuss it, as you both can go through it at your own pace.
+### Interviewing
+* There are tons of guides on this. It seems hard to evaluate, because all you have is a piece of paper and their words. Try to find reliable actor to vouch for them.
+* The book just lists random interview techniques. There are tons of these online. If you want to interview someone, take time preparing, be direct, and get the answers you want.
+### Quitting
+* When someone wants to quit, you have to give them what they want.
+* Then you have to say that they deserve it.
+* You only need to do this if you value them. If you don't, then you should still pretend, but let them go.
+### Promotion and Compensation
+* Money should compromise between performance and experience.
+* Leveling up gives you more fat cash.
+* Underperform/Meets/Exceeds are the evaluations you can give.
+  * Promote an indvidual at exceeds, maintain their role at Meets.
+* Some people stay at Meets. These are nice people.
+* Some people want Exceeds and want to promote. The goal is to get them to the level where they are Meets forever, without having them start to Underperform.
+* Peter principle
+* Recycle losers respectfully. This seems hard to do and is mentioned off-hand.
+### Training
+* Train constantly and offer courses to improve others.
+* Training courses are hard to make and should be vetted and practiced on experienced members first to fix flaws.
