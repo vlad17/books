@@ -1,0 +1,87 @@
+\documentclass{article}
+
+\title{Chapters 4 to 7}
+\author{Vladimir Feinberg}
+
+\input{../defs}
+
+\begin{document}
+
+\maketitle
+
+Notes on Chapters 4 to 7 of Pearl and Mackenzie's \textit{Book of Why} \cite{pearl2018book}.
+
+\setcounter{section}{3}
+
+\section{Confounding}
+
+The basic confounder (Fig.~\ref{fig:fig41}).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{} %% TODO
+  \caption{\label{fig:fig41} }
+\end{figure}
+
+
+(Working through the examples in book of why ch 4), just go through them all.
+
+What to do when there are multiple paths from X to Y with no colliders? How to compute do(X) ---> only remove all in-arrows.
+* would be double-counting causal effects
+* E.g., add arrow A -> D to game 2
+
+Backdoor is all paths that have in-arrows into X.
+
+Use rules a-d to de-confound.
+
+game 5 instead of having C, what if you had an arrow Y->B (cyclic). or B->Y. then not solvable.
+
+* Do cycles appear in practice, or can you "unwind them" (successfull enterpreneur -> funding -> exit)
+
+-----
+
+Worked smoking example
+
+So do you put an arrow diagram 5.2 -> 5.1 or not? Need sensitivity analysis (Cornfield) -- how strong would gene smoking need to be in order to explain.
+
+how small does the value found in the arrow have to be before we should ignore it as non-existent?
+
+----
+
+Paradoxes
+
+monty hall bias
+
+simpson's paradox
+
+obserational non rct bias --> collider
+
+"if you know you're a man, you shouldn't take the drug, ifyou know you're a woman, you shouldn't, etc."
+
+but people in general should take drugs.
+
+The problem is we think of every association causally (regardless of the summarization dimension). But different summarizations can conflict in causal prescription. The root problem is you can't go to a causal prescription (take the drug in order to get better).
+
+Actually answering that question requires a causal model. (tbl 6.4)
+
+Lord's paradox = simpsons but numerical. Could be fixed
+
+can we measure the error of the diagram? critical for making trial observation choices.
+
+-----
+
+work an example of backdoor adjustment for a binary confounder.
+
+frontdoor adjustment work out ex  in 7.1 (for removing mediator effect)
+
+
+
+do calculus
+
+3 rules
+
+they are complete, everything that a causal network implies, they'll derive.
+
+What is known
+* can reduce all reducible  do expressions into observational ones (decidable; not every one can be removed for a given study)
+* can extend this to enabling randomization of possible subgroups of other variables
