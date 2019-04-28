@@ -13,7 +13,7 @@ System 1
 System 2
 * Conscious
 * Allocates attention
-* Complex computatoins, logical thinking
+* Complex computations, logical thinking
 * Single-threaded
 * Slow
 
