@@ -19,9 +19,52 @@ The basic confounder (Fig.~\ref{fig:fig41}).
 
 \begin{figure}[h]
   \centering
-  \includegraphics{} %% TODO
+  $$\xymatrix{
+    &Z \ar[dl]\ar[dr]&\\
+    X \ar[rr]& & Y
+}
+$$
   \caption{\label{fig:fig41} }
 \end{figure}
+
+The true causal effect $X\rightarrow Y$ is confounded by the fork centered at $Z$. Suppose $Z$ positively correlates with $X$ and $Y$, and $X$ is high. Then by virtue of $X$ being high, $Z$ was probably high, which causes $Y$ to be high; so in this way if we observe $(X, Y)$ pairs alone it's unclear how much $X$ causes increases in $Y$ alone.
+
+Resolving this bias. This can happen in two ways: if we can control application of $X$, we can perform a randomized controlled trial. Otherwise, we need to control for the confounder $Z$, and measure the effect at each of the individual values of $Z$.
+
+In other words, we're interested in what happens when we set $X$ to a particular value of $x$, denoted $\mathrm{do}(X=x)$. In this scenario, we consider an alternative universe where we choose $X$, reflected in the following diagram:
+
+$$
+\xymatrix{
+    &Z \ar[dr]&\\
+    X \ar[rr]& & Y
+}
+$$
+
+In general, performing a $\mathrm{do}$ removes all in-arrows to the node(s) being assigned, and then considers a probabilistic model with the remaining connections in the Bayes net.
+
+When controlled treatment is possible, an RCT achieves this by applying treatment randomly, which effectively removes all in-arrows.
+
+\subsection{Creating Independence}
+
+Recall the rules for independence in isolation of structures in Bayes nets:
+
+\begin{enumerate}
+\item In a chain $X\rightarrow Y \rightarrow Z$, controlling for $Y$ makes $X\independent Z|Y$.
+\item In a fork, $X\leftarrow Y \rightarrow Z$, controlling for $Y$ again has the same effect (confounder example, above).
+\item In a collider, $X\rightarrow Y\leftarrow Z$, $X\independent Z$ by default, but conditioning for $Y$ \textit{induces} dependence!
+\end{enumerate}
+
+If any link along a chain has independent endpoints, the entire chain has independent endpoints.
+
+As an example of collider bias being induced by control is as follows. Consider the collider $X\rightarrow Y\leftarrow Z$ where $X$ is the sprinklers were turned on, $Y$ is the grass is wet, and $Z$ is it rained yesterday.
+
+If the grass is wet (conditioning/controlling), then the probability that it rained yesterday given that the sprinklers were not turned on is much higher than usual, since something explains why the grass is wet.\footnote{How does this model behave when there are other possible explanations for the grass being wet, like your neighbor watered it by accident, or similar missing nodes?}
+
+\subsection{The Backdoor Criterion}
+
+If there are multiple paths from $X$ to $Y$, then the backdoor criterion is the condition where all chains starting with an arrow pointing into $X$ are ``blocked'' by the rules outlined above.
+
+If all such paths are blocked, all that's left is the causal effect of $X$ on $Y$.
 
 
 (Working through the examples in book of why ch 4), just go through them all.
@@ -40,13 +83,36 @@ game 5 instead of having C, what if you had an arrow Y->B (cyclic). or B->Y. the
 
 -----
 
-Worked smoking example
+\section{Smoking}
 
-So do you put an arrow diagram 5.2 -> 5.1 or not? Need sensitivity analysis (Cornfield) -- how strong would gene smoking need to be in order to explain.
+This chapter discusses how causal analysis could resolve the concern over identifying smoking as a leading cause of lung cancer.
 
-how small does the value found in the arrow have to be before we should ignore it as non-existent?
+At the core of it, it was unclear whether smokers $X$ (an observable property), who were observed to have higher rates of lung cancer $Y$, did not simply have a smoking gene $Z$ which explained a propensity for smoking and getting lung cancer simultaneously.
 
-----
+In other words, did our world look like Eq.~\ref{eq1} or Eq.~\ref{eq2}?
+\begin{align} \label{eq1}
+  \xymatrix{
+    &Z \ar[dl]\ar[dr]&\\
+    X \ar[rr]& & Y
+}
+\end{align}
+
+\begin{align} \label{eq2}
+  \xymatrix{
+    &Z \ar[dl]\ar[dr]&\\
+    X & & Y
+}
+\end{align}
+
+Of course, the smoking industry preferred Eq.~\ref{eq2}.
+
+Distinguishing the above two scenarios requires what developed from Cornfield's sensitivity analysis. Nowadays this is can probably be done with a variety of tools for \nurl{https://en.wikipedia.org/wiki/Model_selection}{model selection}.
+
+The burning question, which is how poorly does the null model have to behave wrt observed data (in this case, Eq.~\ref{eq2}, which assumes no smoking to cancer effect) compared to the alternative before we start favoring the latter? In other words, when do we add the arrow, and when do we ignore it?
+
+This basically boils down to evaluation of two statistical models, it seems, which requires statistical decision theory.
+
+\section{Paradoxes}
 
 Paradoxes
 
@@ -85,3 +151,5 @@ they are complete, everything that a causal network implies, they'll derive.
 What is known
 * can reduce all reducible  do expressions into observational ones (decidable; not every one can be removed for a given study)
 * can extend this to enabling randomization of possible subgroups of other variables
+
+\end{document}
