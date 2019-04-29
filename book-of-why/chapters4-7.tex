@@ -4,6 +4,7 @@
 \author{Vladimir Feinberg}
 
 \input{../defs}
+\usepackage{booktabs}       % professional-quality tables
 
 \begin{document}
 
@@ -66,22 +67,51 @@ If there are multiple paths from $X$ to $Y$, then the backdoor criterion is the 
 
 If all such paths are blocked, all that's left is the causal effect of $X$ on $Y$.
 
+Let's work through the examples in the book.
 
-(Working through the examples in book of why ch 4), just go through them all.
+\begin{align} \label{eq:game1}
+  \xymatrix{
+  X\ar[r]& \ar[d]A\ar[r] &Y \\
+  &B&
+}
+\end{align}
 
-What to do when there are multiple paths from X to Y with no colliders? How to compute do(X) ---> only remove all in-arrows.
-* would be double-counting causal effects
-* E.g., add arrow A -> D to game 2
+In Eq.~\ref{eq:game1}, there are no backdoor paths so we don't have control for anything.
 
-Backdoor is all paths that have in-arrows into X.
+\begin{align} \label{eq:game2}
+  \xymatrix{
+  A\ar[dd]\ar[r] & B\ar[r] & C \\
+  &D\ar[u]\ar[d]&\\
+  X\ar[r]& E\ar[r] &Y
+}
+\end{align}
 
-Use rules a-d to de-confound.
+In Eq.~\ref{eq:game2}, there's only one backdoor path, $XABDEY$, but it has a collider at $B$ so no action is necessary.
 
-game 5 instead of having C, what if you had an arrow Y->B (cyclic). or B->Y. then not solvable.
 
-* Do cycles appear in practice, or can you "unwind them" (successfull enterpreneur -> funding -> exit)
+\begin{align} \label{eq:game3}
+  \xymatrix{
+  & \ar[ddl]\ar[ddr]B\ar[d] &  \\
+  &A&\\
+  X\ar[ru]\ar[rr]&  &Y
+}
+\end{align}
 
------
+In Eq.~\ref{eq:game3}, there's only one backdoor path, $XBY$, with a fork at $B$ which we can condition on to block.
+
+(Game 4 is skipped here, it has no causal effect on $X$ and $Y$.
+
+\begin{align} \label{eq:game5}
+  \xymatrix{
+  A\ar[dd] \ar[dr] & &C\ar[ld]\ar[dd]\\
+                   & B\ar[dl] &\\
+  X \ar[rr]& & Y
+}
+\end{align}
+
+In Eq.~\ref{eq:game5}, there is initially one backdoor path, $XBCY$, since $XABCY$ is blocked by a collider at $B$. The former can be blocked by conditioning on $C$ without affecting the other path.
+
+But this brings up an interesting point. What if we instead tried to block the path $XBCY$ by conditioning on $B$? That'd introduce collider bias on the path $XABCY$, which would now need blocking $A$ or $C$ in addition. \footnote{Question: is it possible the backdoor criterion can't always be resolved for certain types of structures?}
 
 \section{Smoking}
 
@@ -114,42 +144,60 @@ This basically boils down to evaluation of two statistical models, it seems, whi
 
 \section{Paradoxes}
 
-Paradoxes
+In the Monty Hall problem, there are three doors, behind one of which there's a car. You pick one. Then the host opens another door without a car behind it. Should you switch doors to improve your chances of getting a car?
 
-monty hall bias
+The ostensible paradox is that you should, but no ``information'' was seemingly transferred so why should your choice change? Indeed, it'll increase your chances.
 
-simpson's paradox
+The simple causal diagram is a collider $X\rightarrow Y \leftarrow Z$ with $X$ being your door choice, $z$ being the location of the car (hidden and independent from you), and $Y$ being the door that's opened. The collider bias induces a spurious dependency between your door and the location of the car.
 
-obserational non rct bias --> collider
+We can explain Simpson's paradox in a similar manner. Consider Tbl.~\ref{tab1}, with fictional heart attack (HA) rates after treatment.
 
-"if you know you're a man, you shouldn't take the drug, ifyou know you're a woman, you shouldn't, etc."
+\begin{table}\label{tab1}
+  \centering
+\begin{tabular}{lcccc}\toprule
+Gender & Control, HA & Control, no HA & Treatment, HA & Treatment, no HA\\
+\midrule
+Female & 1 & 19 & 3 & 37 \\ 
+Male & 12 & 28 & 8 & 12 \\
+Total & 13 & 47 & 11 & 49 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-but people in general should take drugs.
+The drug is associated with higher risks of HA for both men and women individually, looking at the HA rates within those populations. However, among the general population, treatment reduces the incidence of HA. So, if you don't know your gender, you should take the drug, but if you know you're a man (or woman), then you shouldn't. What's going on?
 
-The problem is we think of every association causally (regardless of the summarization dimension). But different summarizations can conflict in causal prescription. The root problem is you can't go to a causal prescription (take the drug in order to get better).
+Intuitively, we believe that if two ratios are consistently larger than another two, then the ratio of their sums of their numerators and denominators should be too. I.e., $A/B>a/b$ and $C/D>c/d$ would seemingly imply $(A+C)/(B+D)>(a+c)/(b+d)$, but it doesn't. What matters is the actual frequencies involved: since many more get HA in general, and way more women received treatment then men and more men were in the control than women, the control seems to have a higher incidence of HA.
 
-Actually answering that question requires a causal model. (tbl 6.4)
+So, what should you do? At this point, Pearl argues, the causal prescription necessarily requires a causal model. If we assume that there's a dependence from the drug to HA incidence, and gender is a fork on top of both, affecting both HA incidence and the rate of treatment, then it's clear that gender is a confounder. Then, as usual, we condition on gender and average the rates of HA for treatment instead of summing. This gives us what we want -- the drug increases HA rate overall!
 
-Lord's paradox = simpsons but numerical. Could be fixed
+\section{Do-calculus}
 
-can we measure the error of the diagram? critical for making trial observation choices.
+When we ask for causal strength, we're really asking about $\CP{Y=b}{\mathrm{do}(X=a)}$. Bayes nets already give us the framework for doing so.
 
------
+When we ask a $\mathrm{do}(X)$ question in the context of some causal model $M$ (a Bayes net, which is a DAG with conditional probability tables), we remove all in-edges from $X$. We can use this intuition to get a few rules for answering $\mathrm{do}$ questions with regular, associative, observed probabilities.
 
-work an example of backdoor adjustment for a binary confounder.
+\begin{enumerate}
+\item $\CP{Y}{\mathrm{do}(X), Z, W}= \CP{Y}{\mathrm{do}(X), Z}$ if $Z$ blocks all paths from $W$ to $Y$.
+\item $\CP{Y}{\mathrm{do}(X), Z}= \CP{Y}{X, Z}$ if there are no back-door causal paths from $X$ to $Y$.
+\item $\CP{Y}{\mathrm{do}(X), Z}=\CP{Y}{Z}$ if $Z$ blocks all paths from $X$ to $Y$.
+\end{enumerate}
 
-frontdoor adjustment work out ex  in 7.1 (for removing mediator effect)
+Not only do these rules fully elaborate all $\mathrm{do}$ statements implied by Bayes nets (they're complete), but they're also decidable: a polynomial-time algorithm can tell you how to compute a do-statement.
 
+\section*{Overview}
 
+Summary and overview of active path analysis: \nurl{https://www.andrew.cmu.edu/user/scheines/tutor/d-sep.html}{link}.
 
-do calculus
+Neat \nurl{http://www.dagitty.net/dags.html}{applet} to mess with Bayes network DAGs.
 
-3 rules
+\begin{enumerate}
+\item $d$-separation provides the mechanism for deriving independence (associative reasoning)
+\item $d$-separation implies the back-door criterion for experimental setup (causal reasoning)
+\item (open question to me) is there an algorithm for determining what the necessary experimental setup is?
+\end{enumerate}
 
-they are complete, everything that a causal network implies, they'll derive.
+Great overview of all the above: \nurl{https://www.inference.vc/causal-inference-3-counterfactuals/}{blog post}.
 
-What is known
-* can reduce all reducible  do expressions into observational ones (decidable; not every one can be removed for a given study)
-* can extend this to enabling randomization of possible subgroups of other variables
+The end of Chapter 7 (pages 236-239) elaborates on more unsolved problems in do-calculus.
 
 \end{document}
