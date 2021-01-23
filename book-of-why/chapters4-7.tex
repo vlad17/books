@@ -1,0 +1,203 @@
+\documentclass{article}
+
+\title{Chapters 4 to 7}
+\author{Vladimir Feinberg}
+
+\input{../defs}
+\usepackage{booktabs}       % professional-quality tables
+
+\begin{document}
+
+\maketitle
+
+Notes on Chapters 4 to 7 of Pearl and Mackenzie's \textit{Book of Why} \cite{pearl2018book}.
+
+\setcounter{section}{3}
+
+\section{Confounding}
+
+The basic confounder (Fig.~\ref{fig:fig41}).
+
+\begin{figure}[h]
+  \centering
+  $$\xymatrix{
+    &Z \ar[dl]\ar[dr]&\\
+    X \ar[rr]& & Y
+}
+$$
+  \caption{\label{fig:fig41} }
+\end{figure}
+
+The true causal effect $X\rightarrow Y$ is confounded by the fork centered at $Z$. Suppose $Z$ positively correlates with $X$ and $Y$, and $X$ is high. Then by virtue of $X$ being high, $Z$ was probably high, which causes $Y$ to be high; so in this way if we observe $(X, Y)$ pairs alone it's unclear how much $X$ causes increases in $Y$ alone.
+
+Resolving this bias. This can happen in two ways: if we can control application of $X$, we can perform a randomized controlled trial. Otherwise, we need to control for the confounder $Z$, and measure the effect at each of the individual values of $Z$.
+
+In other words, we're interested in what happens when we set $X$ to a particular value of $x$, denoted $\mathrm{do}(X=x)$. In this scenario, we consider an alternative universe where we choose $X$, reflected in the following diagram:
+
+$$
+\xymatrix{
+    &Z \ar[dr]&\\
+    X \ar[rr]& & Y
+}
+$$
+
+In general, performing a $\mathrm{do}$ removes all in-arrows to the node(s) being assigned, and then considers a probabilistic model with the remaining connections in the Bayes net.
+
+When controlled treatment is possible, an RCT achieves this by applying treatment randomly, which effectively removes all in-arrows.
+
+\subsection{Creating Independence}
+
+Recall the rules for independence in isolation of structures in Bayes nets:
+
+\begin{enumerate}
+\item In a chain $X\rightarrow Y \rightarrow Z$, controlling for $Y$ makes $X\independent Z|Y$.
+\item In a fork, $X\leftarrow Y \rightarrow Z$, controlling for $Y$ again has the same effect (confounder example, above).
+\item In a collider, $X\rightarrow Y\leftarrow Z$, $X\independent Z$ by default, but conditioning for $Y$ \textit{induces} dependence!
+\end{enumerate}
+
+If any link along a chain has independent endpoints, the entire chain has independent endpoints.
+
+As an example of collider bias being induced by control is as follows. Consider the collider $X\rightarrow Y\leftarrow Z$ where $X$ is the sprinklers were turned on, $Y$ is the grass is wet, and $Z$ is it rained yesterday.
+
+If the grass is wet (conditioning/controlling), then the probability that it rained yesterday given that the sprinklers were not turned on is much higher than usual, since something explains why the grass is wet.\footnote{How does this model behave when there are other possible explanations for the grass being wet, like your neighbor watered it by accident, or similar missing nodes?}
+
+\subsection{The Backdoor Criterion}
+
+If there are multiple paths from $X$ to $Y$, then the backdoor criterion is the condition where all chains starting with an arrow pointing into $X$ are ``blocked'' by the rules outlined above.
+
+If all such paths are blocked, all that's left is the causal effect of $X$ on $Y$.
+
+Let's work through the examples in the book.
+
+\begin{align} \label{eq:game1}
+  \xymatrix{
+  X\ar[r]& \ar[d]A\ar[r] &Y \\
+  &B&
+}
+\end{align}
+
+In Eq.~\ref{eq:game1}, there are no backdoor paths so we don't have control for anything.
+
+\begin{align} \label{eq:game2}
+  \xymatrix{
+  A\ar[dd]\ar[r] & B\ar[r] & C \\
+  &D\ar[u]\ar[d]&\\
+  X\ar[r]& E\ar[r] &Y
+}
+\end{align}
+
+In Eq.~\ref{eq:game2}, there's only one backdoor path, $XABDEY$, but it has a collider at $B$ so no action is necessary.
+
+
+\begin{align} \label{eq:game3}
+  \xymatrix{
+  & \ar[ddl]\ar[ddr]B\ar[d] &  \\
+  &A&\\
+  X\ar[ru]\ar[rr]&  &Y
+}
+\end{align}
+
+In Eq.~\ref{eq:game3}, there's only one backdoor path, $XBY$, with a fork at $B$ which we can condition on to block.
+
+(Game 4 is skipped here, it has no causal effect on $X$ and $Y$.
+
+\begin{align} \label{eq:game5}
+  \xymatrix{
+  A\ar[dd] \ar[dr] & &C\ar[ld]\ar[dd]\\
+                   & B\ar[dl] &\\
+  X \ar[rr]& & Y
+}
+\end{align}
+
+In Eq.~\ref{eq:game5}, there is initially one backdoor path, $XBCY$, since $XABCY$ is blocked by a collider at $B$. The former can be blocked by conditioning on $C$ without affecting the other path.
+
+But this brings up an interesting point. What if we instead tried to block the path $XBCY$ by conditioning on $B$? That'd introduce collider bias on the path $XABCY$, which would now need blocking $A$ or $C$ in addition. \footnote{Question: is it possible the backdoor criterion can't always be resolved for certain types of structures?}
+
+\section{Smoking}
+
+This chapter discusses how causal analysis could resolve the concern over identifying smoking as a leading cause of lung cancer.
+
+At the core of it, it was unclear whether smokers $X$ (an observable property), who were observed to have higher rates of lung cancer $Y$, did not simply have a smoking gene $Z$ which explained a propensity for smoking and getting lung cancer simultaneously.
+
+In other words, did our world look like Eq.~\ref{eq1} or Eq.~\ref{eq2}?
+\begin{align} \label{eq1}
+  \xymatrix{
+    &Z \ar[dl]\ar[dr]&\\
+    X \ar[rr]& & Y
+}
+\end{align}
+
+\begin{align} \label{eq2}
+  \xymatrix{
+    &Z \ar[dl]\ar[dr]&\\
+    X & & Y
+}
+\end{align}
+
+Of course, the smoking industry preferred Eq.~\ref{eq2}.
+
+Distinguishing the above two scenarios requires what developed from Cornfield's sensitivity analysis. Nowadays this is can probably be done with a variety of tools for \nurl{https://en.wikipedia.org/wiki/Model_selection}{model selection}.
+
+The burning question, which is how poorly does the null model have to behave wrt observed data (in this case, Eq.~\ref{eq2}, which assumes no smoking to cancer effect) compared to the alternative before we start favoring the latter? In other words, when do we add the arrow, and when do we ignore it?
+
+This basically boils down to evaluation of two statistical models, it seems, which requires statistical decision theory.
+
+\section{Paradoxes}
+
+In the Monty Hall problem, there are three doors, behind one of which there's a car. You pick one. Then the host opens another door without a car behind it. Should you switch doors to improve your chances of getting a car?
+
+The ostensible paradox is that you should, but no ``information'' was seemingly transferred so why should your choice change? Indeed, it'll increase your chances.
+
+The simple causal diagram is a collider $X\rightarrow Y \leftarrow Z$ with $X$ being your door choice, $z$ being the location of the car (hidden and independent from you), and $Y$ being the door that's opened. The collider bias induces a spurious dependency between your door and the location of the car.
+
+We can explain Simpson's paradox in a similar manner. Consider Tbl.~\ref{tab1}, with fictional heart attack (HA) rates after treatment.
+
+\begin{table}\label{tab1}
+  \centering
+\begin{tabular}{lcccc}\toprule
+Gender & Control, HA & Control, no HA & Treatment, HA & Treatment, no HA\\
+\midrule
+Female & 1 & 19 & 3 & 37 \\ 
+Male & 12 & 28 & 8 & 12 \\
+Total & 13 & 47 & 11 & 49 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The drug is associated with higher risks of HA for both men and women individually, looking at the HA rates within those populations. However, among the general population, treatment reduces the incidence of HA. So, if you don't know your gender, you should take the drug, but if you know you're a man (or woman), then you shouldn't. What's going on?
+
+Intuitively, we believe that if two ratios are consistently larger than another two, then the ratio of their sums of their numerators and denominators should be too. I.e., $A/B>a/b$ and $C/D>c/d$ would seemingly imply $(A+C)/(B+D)>(a+c)/(b+d)$, but it doesn't. What matters is the actual frequencies involved: since many more get HA in general, and way more women received treatment then men and more men were in the control than women, the control seems to have a higher incidence of HA.
+
+So, what should you do? At this point, Pearl argues, the causal prescription necessarily requires a causal model. If we assume that there's a dependence from the drug to HA incidence, and gender is a fork on top of both, affecting both HA incidence and the rate of treatment, then it's clear that gender is a confounder. Then, as usual, we condition on gender and average the rates of HA for treatment instead of summing. This gives us what we want -- the drug increases HA rate overall!
+
+\section{Do-calculus}
+
+When we ask for causal strength, we're really asking about $\CP{Y=b}{\mathrm{do}(X=a)}$. Bayes nets already give us the framework for doing so.
+
+When we ask a $\mathrm{do}(X)$ question in the context of some causal model $M$ (a Bayes net, which is a DAG with conditional probability tables), we remove all in-edges from $X$. We can use this intuition to get a few rules for answering $\mathrm{do}$ questions with regular, associative, observed probabilities.
+
+\begin{enumerate}
+\item $\CP{Y}{\mathrm{do}(X), Z, W}= \CP{Y}{\mathrm{do}(X), Z}$ if $Z$ blocks all paths from $W$ to $Y$.
+\item $\CP{Y}{\mathrm{do}(X), Z}= \CP{Y}{X, Z}$ if there are no back-door causal paths from $X$ to $Y$.
+\item $\CP{Y}{\mathrm{do}(X), Z}=\CP{Y}{Z}$ if $Z$ blocks all paths from $X$ to $Y$.
+\end{enumerate}
+
+Not only do these rules fully elaborate all $\mathrm{do}$ statements implied by Bayes nets (they're complete), but they're also decidable: a polynomial-time algorithm can tell you how to compute a do-statement.
+
+\section*{Overview}
+
+Summary and overview of active path analysis: \nurl{https://www.andrew.cmu.edu/user/scheines/tutor/d-sep.html}{link}.
+
+Neat \nurl{http://www.dagitty.net/dags.html}{applet} to mess with Bayes network DAGs.
+
+\begin{enumerate}
+\item $d$-separation provides the mechanism for deriving independence (associative reasoning)
+\item $d$-separation implies the back-door criterion for experimental setup (causal reasoning)
+\item (open question to me) is there an algorithm for determining what the necessary experimental setup is?
+\end{enumerate}
+
+Great overview of all the above: \nurl{https://www.inference.vc/causal-inference-3-counterfactuals/}{blog post}.
+
+The end of Chapter 7 (pages 236-239) elaborates on more unsolved problems in do-calculus.
+
+\end{document}
