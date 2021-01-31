@@ -5,6 +5,7 @@ A collection of book notes.
 * [Book of Why](book-of-why/)
 * [High Output Management](high-output-management/)
 * [Thinking, Fast and Slow](thinking-fast-and-slow/)
+* [Getting to Yes](getting-to-yes/)
 
 # Contributing
 
