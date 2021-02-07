@@ -15,6 +15,9 @@ Some examples:
 
 **Negotiation** is the back-and-forth communication designed to reach an agreement when you and the other side have some interests that are shared and others that are opposed or simply different.
 
+What is the difference between negotiation and debate?
+Debate is similar to positional, rather than shared negotiation. Debate probably won’t convince your opponent, they will not want to concede. However, debate has a lot of value for third-party if they want to understand the issue more fully. Politicians on TV are doing debate, because they have little vested interest in the conclusion of the debate. Committees that decide the context of the bill are behind closed doors, and do more negotiation to determine contents of bill (because here politicians have vested interests to get re-elected, so they have to make sure they get their lobbyist’s requests).
+
 ## The Naive View of Negotiation
 
 **Soft Negotiation** avoids personal conflict, makes concessions to readily reach agreement in hopes of preserving the relationship. Note, however, that frequently this results in agreements which leave the soft negotiation party bitter and resentful, which don't help.
@@ -25,7 +28,7 @@ One might incorrectly assume that all negotiation strategies fall on a spectrum 
 
 ## A Third Way: Principled Negotiation
 
-**Principled Negotiation** is "hard on merits" but "soft on people". It provides a mechanism to circumvent reasoning about the above specturm between relationship-preservation and concession-avoidance in a zero-sum manner with a structured mechanism for identifying what each party is entitled to.
+**Principled Negotiation** is "hard on merits" but "soft on people". It provides a mechanism to circumvent reasoning about the above spectrum between relationship-preservation and concession-avoidance in a zero-sum manner with a structured mechanism for identifying what each party is entitled to.
 
 Rest of the book gives an overview of the method, along with considerations for negotiating with a powerful other, unengaged other, and discussion of tricks to defend against.
 

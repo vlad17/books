@@ -14,7 +14,8 @@ Substance is the basis of the negotiation in the first place, but relationship f
 
 Positional bargaining puts relationship and substance in conflict because it frames negotiation as a contest of will --- who's more willing to burn the relationship for substance?
 
-_VF Note:_ what if _you_, as the negotiator, are willing to sacrifice relationship for substance? You might not be interested in repeated engagements, and only want to preserve some bare minimum level of agreeableness. This means that in principle you can take a harder line negotiating. With principled negotiation, it looks like you give up this opportunity (which is fine if there are strong positive-sum solutions, but in "simplified" cases where positions boil down to singular conflicting interests, not so much).
+_VF Note:_ what if _you_, as the negotiator, are willing to sacrifice relationship for substance? You might not be interested in repeated engagements, and only want to preserve some bare 	minimum level of agreeableness. This means that in principle you can take a harder line negotiating. With principled negotiation, it looks like you give up this opportunity (which is fine if there are strong positive-sum solutions, but in "simplified" cases where positions boil down to singular conflicting interests, not so much).
+There _is_ then, a situation where you should hard-line negotiate. But this may be inefficient to what your true underlying needs are, b/c this situation is likely just a game in an Asian market.
 
 ## Disentanglement
 
@@ -29,6 +30,7 @@ Differences are defined by differences between the thinking and world view of th
 Viewing from the other person's side might reveal new information or understanding. E.g., a tenant might only focus on how they pay the rent when asked every time, but the landlord views this as needing to ask every single month.
 
 This may even change one's standing on some issues, which is a *benefit* of empathy. Finding interests where you can give way to the other reduces the area of conflict. _VF Note:_ Again, maybe this is aggressively zero-sum thinking, but this is something that can be used later during negotiation as a bargaining chip, is it really a smart negotiating move to give it away for free, especially when there will be an interest you care about later? Possibly, actually, as a signal of good will, if you make a big deal out of it.
+This part of the book is just talking about the fact that you can reduce conflict surface area with empathy, not the mechanism to back off a position. You should still do so with great fanfare, as discussed below.
 
 ### Avoid Fear-based Deductions
 
@@ -42,7 +44,15 @@ Factory owner talking to service mechanic for generator that has broken several 
  * Our generator that you serviced broke down again. We need that generator to do our business, it's very frustrating to have it break over and over. <- Recognize own emotions, clarify interest
  * Tell us what you think, should we get a different mechanic? Is the problem with the generator?
  
-_VF Note:_ Does the above seriously work? Asking mechanic A if they can recommend the competition?
+_VF Note:_ Does the above seriously work? Asking mechanic A if they can recommend the competition?	
+There’s a nonzero chance that the mechanic actually does recognize it’s their own fault internally and tries to give you a discount.
+Follow up: why give the mechanic an out with the “go to the manufacturer”? Lets them emotionally displace blame in order to move forward with a solution.
+
+_Note_: Isn’t this terribly passive aggressive?
+Maybe that’s the point. Mechanic internalizes that they fucked up, this is intentionally awkward to make them face it themselves.
+_(internal discussion: VF/TL/JB)_: From a relationship standpoint, you probably want to be more of a straight shooter.
+Maybe this example is very extreme, where the mechanic relationship isn’t that important.
+In a work environment you’d be more neutral “there’s a problem, let’s solve it”
 
 ### Discuss perceptions
 
@@ -50,7 +60,7 @@ Great way to reveal perceptions.
 
 Do not dismiss interests that you're OK giving up as unimportant.  Per the note above, put more cynically, milk it for everything it's got. This communicates that you're willing to do something they'd like.
 
-E.g., U.S. in ocean preservation discussions could've devoted substantial time towards working out the details of the technology exchange for underwater mining, which they ere okay with doing for developing nations. However, they didn't spend much time on this, and as a result had less interest from the developing natinos in participating in ecological preservation discussion.
+E.g., U.S. in ocean preservation discussions could've devoted substantial time towards working out the details of the technology exchange for underwater mining, which they ere okay with doing for developing nations. However, they didn't spend much time on this, and as a result had less interest from the developing nations in participating in ecological preservation discussion.
 
 ### Build Better Perceptions for Them / Act Inconsistently with Negative Perceptions
 
@@ -90,7 +100,7 @@ Core drivers of emotions:
 * **role**: desire to have purpose
 * **status**: desire to feel fairly seen and acknowledged
 
-### Role of Idenitty
+### Role of Identity
 
 Threat to identity is an emotional trigger. E.g., you may want to go to your manager for a raise. If part of this includes some kind of accusatory information, e.g., pointing out failing s and inconsistencies, your manager's sense of self (that they're a good manager, for instance), might be threatened, causing them to think about the implication as "you're not competent."
 

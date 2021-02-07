@@ -20,7 +20,6 @@ Indeed, given the presence of a wide window in the other room, the latent positi
 
 _VF Note:_ Again, I'm wary that in many conflicts of interest, there are few "levers" involved, which makes the meat of the conversation the "objective metric" discussion, but again this might be later in the book.
 
-
 Opposed Positions are driven by multifaceted latent interests, which may be conflicting or compatible.
 
 ## How to Identify Interests
@@ -44,5 +43,3 @@ Be specific about how past events run counter to interests, but focus on the int
 Ack their interests and appreciate them.
 
 It is *not* wise to commit to a position, but it *is* wise to commit to interests.
-
-
